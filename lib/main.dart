@@ -55,6 +55,16 @@ class _MyHomePageState extends State<MyHomePage> {
       }, child: Text('Anonymous')
 
         ),
+            SizedBox(height: 10),
+
+            TextButton(onPressed: () async {
+              main();
+              auth.signOut();
+              //UserCredential userCredential = await auth.signInAnonymously();
+              //print(userCredential);
+            }, child: Text('Anonymous')
+
+            ),
 
 
       ],
