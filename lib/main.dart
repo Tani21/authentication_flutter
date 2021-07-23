@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
               main();
       UserCredential userCredential = await auth.signInAnonymously();
       print(userCredential);
-      }, child: Text('Anonymous')
+      }, child: Text('Anonymous sign in')
 
         ),
             SizedBox(height: 10),
@@ -62,8 +62,53 @@ class _MyHomePageState extends State<MyHomePage> {
               auth.signOut();
               //UserCredential userCredential = await auth.signInAnonymously();
               //print(userCredential);
-            }, child: Text('Anonymous')
+            }, child: Text('Anonymous sign out')
             ),
+
+            SizedBox(height: 10),
+
+            TextButton(onPressed: () async {
+              main();
+              try {
+                UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                    email: "jhamayank@example.com",
+                    password: "SuperSecretPassword!"
+                );
+              } on FirebaseAuthException catch (e) {
+                if (e.code == 'weak-password') {
+                  print('The password provided is too weak.');
+                } else if (e.code == 'email-already-in-use') {
+                  print('The account already exists for that email.');
+                }
+              } catch (e) {
+                print(e);
+              }
+            }, child: Text('email id sign in')
+
+            ),
+
+
+            SizedBox(height:10),
+            TextButton(onPressed: () async {
+              try {
+                UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+                    email: "jhamayank@example.com",
+                    password: "SuperSecretPassword!"
+                );
+              } on FirebaseAuthException catch (e) {
+                if (e.code == 'user-not-found') {
+                  print('No user found for that email.');
+                } else if (e.code == 'wrong-password') {
+                  print('Wrong password provided for that user.');
+                }
+              }
+            }, child: Text('sign in if you exist already')),
+
+            SizedBox(height:10),
+            TextButton(onPressed: () async
+            {
+              await auth.signOut();
+            }, child: Text('sign out for email id')),
       ],
       ),
       ),

@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.authentication_as">
    <application
-        android:label="authentication_as"
+       android:usesCleartextTraffic="true"
+       android:label="authentication_as"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
