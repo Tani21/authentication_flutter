@@ -63,10 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
               //UserCredential userCredential = await auth.signInAnonymously();
               //print(userCredential);
             }, child: Text('Anonymous')
-
             ),
-
-
       ],
       ),
       ),
